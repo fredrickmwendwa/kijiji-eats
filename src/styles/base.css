@@ -1,0 +1,59 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--header-h) + 72px); }
+body {
+  margin: 0; background: var(--color-bone); color: var(--color-ink);
+  font-family: var(--font-body); font-size: var(--text-body); line-height: 1.55;
+  overflow-x: hidden;
+}
+body.is-locked { overflow: hidden; }
+img, svg { max-width: 100%; display: block; }
+h1, h2, h3 {
+  font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+  line-height: 0.95; margin: 0; overflow-wrap: anywhere;
+}
+h1 { font-size: var(--text-h1); }
+h2 { font-size: var(--text-h2); }
+h3 { font-size: var(--text-h3); }
+p { margin: 0 0 var(--space-3); max-width: 65ch; }
+a { color: inherit; }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+:focus-visible { outline: 3px solid var(--color-ink); outline-offset: 3px; }
+.on-ink :focus-visible { outline-color: var(--color-bone); }
+
+.container { width: 100%; max-width: var(--container); margin: 0 auto; padding-inline: var(--gutter); }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: absolute; left: var(--space-4); top: -100px; z-index: 100;
+  background: var(--color-chilli); color: #fff; padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-control); font-weight: 600; text-decoration: none;
+}
+.skip-link:focus { top: var(--space-2); }
+
+.label {
+  font-family: var(--font-mono); font-weight: 500; font-size: var(--text-label);
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-muted);
+}
+.mono { font-family: var(--font-mono); font-weight: 500; }
+.muted { color: var(--color-muted); }
+.lede { font-size: 1.125rem; }
+
+.band { padding-top: var(--space-8); margin-top: var(--space-12); border-top: 2px solid var(--color-ink); }
+.band > .label + h2 { margin-top: var(--space-2); }
+.band h2 { margin-bottom: var(--space-4); }
+.grid-2 { display: grid; gap: var(--space-8); }
+@media (min-width: 768px) {
+  .band { padding-top: var(--space-12); margin-top: var(--space-16); }
+  .grid-2 { grid-template-columns: 1fr 1fr; gap: var(--space-12); }
+  .grid-2--4-8 { grid-template-columns: 4fr 8fr; }
+  .grid-2--5-7 { grid-template-columns: 5fr 7fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

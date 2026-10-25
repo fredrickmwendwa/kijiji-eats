@@ -1,0 +1,55 @@
+:root {
+  /* Colour */
+  --color-ink: #14130f;
+  --color-bone: #f4f2ee;
+  --color-sand: #e6e1d6;
+  --color-chilli: #c8321e;
+  --color-chilli-deep: #a52b19;
+  --color-ember: #e8593f; /* use on ink only */
+  --color-muted: #55534b;
+  --color-rule: #c9c6bb;
+  --color-success: #1f6b3a;
+  --color-warning: #7a5200;
+  --color-error: #a52b19;
+  --color-white: #ffffff;
+
+  /* Type */
+  --font-display: 'Big Shoulders Display', 'Arial Narrow', Impact, sans-serif;
+  --font-body: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --text-display: clamp(3rem, 14vw, 8rem);
+  --text-h1: clamp(2.5rem, 9vw, 4rem);
+  --text-h2: clamp(2rem, 6vw, 3.25rem);
+  --text-h3: 1.5rem;
+
+  /* Space (4px base) */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px; --space-24: 96px;
+
+  /* Layout */
+  --container: 1200px;
+  --gutter: 16px;
+  --header-h: 56px;
+  --tap: 44px;
+  --control: 48px;
+
+  /* Shape */
+  --radius-control: 4px;
+  --shadow-sheet: 0 -8px 24px rgba(20, 19, 15, 0.18);
+  --shadow-drawer: -8px 0 24px rgba(20, 19, 15, 0.18);
+
+  /* Motion */
+  --dur-fast: 120ms; --dur-base: 200ms; --dur-sheet: 280ms;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+  :root { --gutter: 24px; --header-h: 64px; }
+}
+@media (min-width: 1024px) {
+  :root { --gutter: 32px; }
+}
