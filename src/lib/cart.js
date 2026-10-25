@@ -2,8 +2,8 @@ import { getItem } from '../data/menu'
 
 // A line is one menu item with one set of selected options.
 // key = item id plus the chosen option ids, so identical choices merge.
-export const makeKey = (itemId, selections = {}) =>
-  [itemId, ...Object.keys(selections).sort().map((g) => `${g}:${selections[g]}`)].join('|')
+export const makeKey = (itemId, selections = {}, note = '') =>
+  [itemId, ...Object.keys(selections).sort().map((g) => `${g}:${selections[g]}`), ...(note ? [`n:${note}`] : [])].join('|')
 
 export function priceFor(item, selections = {}) {
   let price = item.price
@@ -21,8 +21,9 @@ export function describeSelections(item, selections = {}) {
     .join(', ')
 }
 
-export function buildLine(item, selections = {}, qty = 1) {
-  return { key: makeKey(item.id, selections), itemId: item.id, selections, unitPrice: priceFor(item, selections), qty }
+export function buildLine(item, selections = {}, qty = 1, note = '') {
+  const clean = note.trim().slice(0, 80)
+  return { key: makeKey(item.id, selections, clean), itemId: item.id, selections, note: clean, unitPrice: priceFor(item, selections), qty }
 }
 
 export const initialState = { lines: [] }

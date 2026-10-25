@@ -13,7 +13,8 @@ export function buildOrderMessage({ lines, name, mode, note }) {
     total += sub
     const label = opts ? `${item.name} (${opts})` : item.name
     const calc = l.qty > 1 ? ` (${l.qty} x ${l.unitPrice.toLocaleString('en-KE')})` : ''
-    out.push(`${l.qty} x ${label}: ${formatKES(sub)}${calc}`)
+    const itemNote = l.note ? ` [${l.note}]` : ''
+    out.push(`${l.qty} x ${label}${itemNote}: ${formatKES(sub)}${calc}`)
   }
   out.push('', `*Total: ${formatKES(total)}*`)
   if (note && note.trim()) out.push(`Note: ${note.trim().slice(0, 200)}`)
