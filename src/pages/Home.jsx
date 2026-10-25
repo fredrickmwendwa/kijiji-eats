@@ -17,12 +17,16 @@ export default function Home() {
     <div className="page container">
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero__copy">
-          <p className="label">Nyama choma house, Nairobi</p>
-          <h1 id="hero-title">Honest nyama choma</h1>
-          <p className="lede">Meat by the half kilo, priced in plain sight. Pick your cut, see your total, send it on WhatsApp.</p>
-          <div className="btn-row">
-            <Button as={Link} variant="primary" to="/menu">See the menu</Button>
-            <Button as="a" href="#how">How ordering works</Button>
+          <div className="hero__head">
+            <p className="label">Nyama choma house, Nairobi</p>
+            <h1 id="hero-title"><span>Honest</span> <span>nyama</span> <span>choma</span></h1>
+          </div>
+          <div className="hero__body">
+            <p className="lede">Meat by the half kilo, priced in plain sight. Pick your cut, see your total, send it on WhatsApp.</p>
+            <div className="btn-row">
+              <Button as={Link} variant="primary" to="/menu">See the menu</Button>
+              <Button as="a" className="hero__secondary" href="#how">How ordering works</Button>
+            </div>
           </div>
         </div>
         <div className="hero__image media">
@@ -30,10 +34,10 @@ export default function Home() {
         </div>
       </section>
 
-      <dl className="facts" style={{ margin: 0 }}>
-        <div><dt className="label">Today (sample hours)</dt><dd className="mono" style={{ margin: 0 }}>{today?.time}</dd></div>
-        <div><dt className="label">Place (example)</dt><dd className="mono" style={{ margin: 0 }}>{SITE.ADDRESS}</dd></div>
-        <div><dt className="label">Order</dt><dd className="mono" style={{ margin: 0 }}>WhatsApp, pay by M-Pesa</dd></div>
+      <dl className="facts">
+        <div><dt className="label">Today (sample hours)</dt><dd className="mono">{today?.time}</dd></div>
+        <div><dt className="label">Place (example)</dt><dd className="mono">{SITE.ADDRESS}</dd></div>
+        <div><dt className="label">Order</dt><dd className="mono">WhatsApp, pay by M-Pesa</dd></div>
       </dl>
 
       <section className="band" aria-labelledby="featured-title">
