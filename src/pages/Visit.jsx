@@ -1,6 +1,7 @@
 import { usePageMeta } from '../hooks/usePageMeta'
 import { SITE } from '../config/site'
 import Img from '../components/Img'
+import { asset } from '../lib/images'
 import Button from '../components/Button'
 import MapPanel from '../components/MapPanel'
 import PaymentPanel from '../components/PaymentPanel'
@@ -25,7 +26,7 @@ export default function Visit() {
             <p className="lede">A village keeps honest count: what is on the fire, what it weighs, what it costs. Kijiji Eats cooks that way.</p>
             <p>We grill goat, beef and chicken over charcoal and serve it with ugali, kachumbari and sukuma wiki. The menu is short on purpose, and every dish shows its portion and price before you order.</p>
           </div>
-          <div className="media story-image"><Img alt="The grill with hands and smoke, placeholder for story photograph" label="story: the grill, hands and smoke" w={800} h={600} /></div>
+          <div className="media story-image"><Img alt="Chicken legs grilling over charcoal in rising smoke" label="story" src={asset('story.jpg')} w={1200} h={900} /></div>
         </div>
       </section>
 

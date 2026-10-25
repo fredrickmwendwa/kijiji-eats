@@ -3,6 +3,7 @@ import { usePageMeta } from '../hooks/usePageMeta'
 import { FEATURED_IDS, getItem } from '../data/menu'
 import { SITE, hoursToday } from '../config/site'
 import Img from '../components/Img'
+import { asset } from '../lib/images'
 import Button from '../components/Button'
 import DishRow from '../components/DishRow'
 import MapPanel from '../components/MapPanel'
@@ -17,15 +18,15 @@ export default function Home() {
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero__copy">
           <p className="label">Nyama choma house, Nairobi</p>
-          <h1 id="hero-title">Meat by the half kilo. Priced in plain sight.</h1>
-          <p className="lede">Goat, beef and chicken grilled over charcoal, with ugali, kachumbari and sukuma. Pick your cut, see your total, send it on WhatsApp.</p>
+          <h1 id="hero-title">Honest nyama choma</h1>
+          <p className="lede">Meat by the half kilo, priced in plain sight. Pick your cut, see your total, send it on WhatsApp.</p>
           <div className="btn-row">
             <Button as={Link} variant="primary" to="/menu">See the menu</Button>
             <Button as="a" href="#how">How ordering works</Button>
           </div>
         </div>
         <div className="hero__image media">
-          <Img alt="Goat ribs on a board, placeholder for hero photograph" label="hero: goat ribs, overhead, ember grade" w={800} h={1000} dark loading="eager" />
+          <Img alt="A bone-in cut of meat searing on a grill beside open flame" label="hero" src={asset('hero.jpg')} w={960} h={1200} dark loading="eager" />
         </div>
       </section>
 
@@ -59,7 +60,7 @@ export default function Home() {
 
       <section className="band" aria-labelledby="idea-title">
         <div className="grid-2 grid-2--5-7">
-          <div className="media story-image"><Img alt="Cook at the grill, placeholder for story photograph" label="story: cook at the grill" w={800} h={600} /></div>
+          <div className="media story-image"><Img alt="Chicken legs grilling over charcoal in rising smoke" label="story" src={asset('story.jpg')} w={1200} h={900} /></div>
           <div>
             <p className="label">The idea</p>
             <h2 id="idea-title">Kijiji means village</h2>

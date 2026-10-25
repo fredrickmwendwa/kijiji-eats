@@ -69,3 +69,12 @@ describe('WhatsApp message', () => {
     expect(url).not.toContain('\n')
   })
 })
+
+describe('menu images', () => {
+  it('every referenced dish image exists in public/images/dishes', async () => {
+    const { MENU } = await import('../data/menu')
+    const fs = await import('node:fs')
+    const missing = MENU.filter((m) => m.image && !fs.existsSync(`public/images/dishes/${m.image}`))
+    expect(missing).toEqual([])
+  })
+})

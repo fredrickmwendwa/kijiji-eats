@@ -13,3 +13,6 @@ export function placeholderSrc(label, w = 400, h = 300, dark = false) {
     `<text x="${w * 0.06}" y="${h * 0.92}" font-family="monospace" font-size="${Math.max(10, Math.round(w / 32))}" fill="${fg}">PLACEHOLDER: ${safe}</text></svg>`
   return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`
 }
+
+// Path to a file in public/images, correct under any base path.
+export const asset = (file) => `${import.meta.env.BASE_URL}images/${file}`

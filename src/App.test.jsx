@@ -14,7 +14,7 @@ const renderAt = (path = '/') =>
 
 describe('routes', () => {
   it.each([
-    ['/', /Meat by the half kilo/i],
+    ['/', /Honest nyama choma/i],
     ['/menu', /The menu/i],
     ['/visit', /Come hungry/i],
     ['/does-not-exist', /Not on the menu/i],

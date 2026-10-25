@@ -51,12 +51,28 @@ Every unconfirmed business detail lives in `src/config/site.js` and is clearly m
 | `ADDRESS`, `MAP_EMBED_URL`, `DIRECTIONS_URL` | Example location. With no embed URL a map placeholder with links is shown. |
 | `HOURS`, `REVIEW_URL` | Sample hours. Reviews are labelled sample content and no ratings are shown. |
 
-The menu is sample data in `src/data/menu.js`. Images are labelled placeholder SVGs from
-`src/lib/images.js`; the `Img` component accepts a real `src` and falls back to the placeholder if it fails
-to load.
+The menu is sample data in `src/data/menu.js`. Dishes without a photo (`Goat and liver`, `Chicken wings`,
+`Soda`) show a labelled placeholder from `src/lib/images.js`. The `Img` component also falls back to the
+placeholder if a file fails to load, so there are no broken-image icons.
 
 Opening WhatsApp is a handoff. The site never shows an order as confirmed. M-Pesa instructions are
 guidance only: there is no payment gateway and no payment verification.
+
+## Images
+
+Photos live in `public/images/` (hero 960x1200, story 1200x900, dish thumbnails 320x320, all compressed JPEGs
+under 150 KB). To add or swap one, drop the file in `public/images/dishes/` and set `image: 'name.jpg'` on the item
+in `src/data/menu.js`.
+
+**Credits and rights.** These are temporary portfolio images. Replace them with owner photography before any
+commercial use.
+
+- Unsplash: hero by Emerson Vieira, story photo by Bradley Pritchard-Jones, beef ribs by Alexandru-Bogdan Ghita.
+  (A fourth Unsplash photo by Gang Hao is in the project folder's source set but not used.)
+- The remaining dish photos (goat, chicken, platters, sides, juice, water) came from recipe blogs and
+  image sites, and their licences are unconfirmed. Do not publish them commercially.
+- Cropped to remove visible watermarks where possible. The kachumbari photo carries a very faint blog watermark and the
+  water photo a faint stock watermark that cannot be cropped out.
 
 ## Project structure
 
@@ -75,7 +91,7 @@ src/
 
 ## Testing
 
-`npm test` runs 18 tests: cart pricing, merging and replacement; the WhatsApp message and encoded
+`npm test` runs 19 tests: cart pricing, merging and replacement; the WhatsApp message and encoded
 URL; every route; menu filtering and search; customisation pricing; the order flow from empty cart through
 name validation, WhatsApp handoff and payment guidance; saved order restore; and mobile navigation.
 

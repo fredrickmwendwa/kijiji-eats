@@ -3,7 +3,7 @@
 
 export const SITE = {
   name: 'Kijiji Eats',
-  tagline: 'Meat by the half kilo. Priced in plain sight.',
+  tagline: 'Honest nyama choma, priced in plain sight.',
 
   // International format digits only, for example 2547XXXXXXXX. Left empty on purpose.
   // While empty, the WhatsApp link opens WhatsApp so the customer can pick a chat.

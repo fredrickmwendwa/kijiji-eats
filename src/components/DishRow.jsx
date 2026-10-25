@@ -1,6 +1,7 @@
 import { useOrder } from '../context/OrderContext'
 import { buildLine, qtyForItem } from '../lib/cart'
 import { formatKES } from '../lib/format'
+import { dishImage } from '../data/menu'
 import Img from './Img'
 import Button from './Button'
 
@@ -13,7 +14,7 @@ export default function DishRow({ item }) {
   return (
     <li className={`dish${qty > 0 ? ' dish--added' : ''}`}>
       <div className="media">
-        <Img alt={`${item.name}, placeholder image`} label={item.name} w={176} h={176} />
+        <Img alt={item.image ? item.name : `${item.name}, placeholder image`} label={item.name} src={dishImage(item)} w={320} h={320} />
       </div>
       <div>
         <div className="dish__name">
