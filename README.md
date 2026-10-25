@@ -101,8 +101,8 @@ screenshots yet. Before shipping, check the pages at 320, 360, 390, 768, 1280 an
 
 ## Deployment note
 
-This is a single-page app. Host it with a rewrite to `index.html` for unknown paths (a Netlify
-`_redirects` file is included in `public/`). Set the base path in `vite.config.js` if it is not served from `/`.
+This is a single-page app. Host it with a rewrite to `index.html` for unknown paths (`vercel.json` is included for Vercel and a Netlify
+`_redirects` file is in `public/`). Set the base path in `vite.config.js` if it is not served from `/`.
 
 ## Lessons learned
 
