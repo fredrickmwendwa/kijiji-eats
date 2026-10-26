@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useOrder } from '../context/OrderContext'
 import { getItem } from '../data/menu'
@@ -10,6 +10,7 @@ import Dialog from './Dialog'
 import Button from './Button'
 import CopyButton from './CopyButton'
 import PaymentPanel from './PaymentPanel'
+import AnimatedNumber from './AnimatedNumber'
 
 const TITLES = { review: 'Your order', handoff: 'Order ready', pay: 'Pay with M-Pesa' }
 
@@ -54,11 +55,11 @@ function ReviewStep({ onSent }) {
           <div ref={alertRef} tabIndex={-1} role="alert" className="notice notice--error">Check one thing: {error}</div>
         )}
         <ul>
-          {lines.map((l) => {
+          {lines.map((l, idx) => {
             const item = getItem(l.itemId)
             const opts = describeSelections(item, l.selections)
             return (
-              <li key={l.key} className="order-line">
+              <li key={l.key} className="order-line" style={{ '--i': idx }}>
                 <div>
                   <div style={{ fontWeight: 600 }}>{item.name}</div>
                   {(opts || l.note) && <div className="order-line__opts">{[opts, l.note].filter(Boolean).join('. ')}</div>}
@@ -79,7 +80,7 @@ function ReviewStep({ onSent }) {
         </ul>
         <div className="order-total">
           <span className="label">Total</span>
-          <output aria-live="polite">{formatKES(total)}</output>
+          <output><AnimatedNumber value={total} /></output>
         </div>
 
         <div className="field">
@@ -156,16 +157,24 @@ export default function OrderSheet() {
   const { sheet, setStep, closeSheet, lines } = useOrder()
   const [message, setMessage] = useState('')
   const step = lines.length === 0 ? 'review' : sheet.step
+  const stepRef = useRef(null)
+  const firstRender = useRef(true)
+  useEffect(() => {
+    if (firstRender.current) { firstRender.current = false; return }
+    stepRef.current?.focus()
+  }, [step])
 
   return (
     <Dialog label={TITLES[step]} onClose={closeSheet}>
-      <div className="sheet__head">
+      <div className="sheet__head on-ink">
         <h2>{TITLES[step]}</h2>
-        <Button size="sm" onClick={closeSheet} aria-label="Close order" style={{ width: 44, padding: 0, color: 'inherit', borderColor: 'currentColor' }}>x</Button>
+        <Button size="sm" onClick={closeSheet} aria-label="Close order" style={{ width: 44, padding: 0 }}>x</Button>
       </div>
-      {step === 'review' && <ReviewStep onSent={(text) => { setMessage(text); setStep('handoff') }} />}
-      {step === 'handoff' && <HandoffStep message={message} onBack={() => setStep('review')} onPay={() => setStep('pay')} />}
-      {step === 'pay' && <PayStep onBack={() => setStep('review')} />}
+      <div key={step} ref={stepRef} tabIndex={-1} className="sheet-step">
+        {step === 'review' && <ReviewStep onSent={(text) => { setMessage(text); setStep('handoff') }} />}
+        {step === 'handoff' && <HandoffStep message={message} onBack={() => setStep('review')} onPay={() => setStep('pay')} />}
+        {step === 'pay' && <PayStep onBack={() => setStep('review')} />}
+      </div>
     </Dialog>
   )
 }

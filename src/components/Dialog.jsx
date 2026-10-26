@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 
 let locks = 0
+const stack = []
 const FOCUSABLE = 'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])'
 
 // Shared modal behaviour: focus moves in, Tab is trapped, Escape closes,
@@ -8,6 +9,20 @@ const FOCUSABLE = 'a[href], button:not([disabled]), input, textarea, select, [ta
 export default function Dialog({ label, onClose, className = 'sheet', scrim = true, children }) {
   const ref = useRef(null)
   const opener = useRef(null)
+
+  const closeRef = useRef(onClose)
+  closeRef.current = onClose
+
+  // Escape closes the top-most dialog, even if focus has moved outside it.
+  useEffect(() => {
+    const entry = {}
+    stack.push(entry)
+    const onKey = (e) => {
+      if (e.key === 'Escape' && stack[stack.length - 1] === entry) { e.stopPropagation(); closeRef.current() }
+    }
+    document.addEventListener('keydown', onKey)
+    return () => { document.removeEventListener('keydown', onKey); stack.splice(stack.indexOf(entry), 1) }
+  }, [])
 
   useEffect(() => {
     opener.current = document.activeElement
@@ -24,7 +39,6 @@ export default function Dialog({ label, onClose, className = 'sheet', scrim = tr
   }, [])
 
   const onKeyDown = (e) => {
-    if (e.key === 'Escape') { e.stopPropagation(); onClose(); return }
     if (e.key !== 'Tab') return
     const items = [...ref.current.querySelectorAll(FOCUSABLE)].filter((el) => el.offsetParent !== null || el === document.activeElement)
     if (!items.length) return

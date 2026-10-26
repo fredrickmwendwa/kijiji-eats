@@ -3,6 +3,7 @@ import { buildLine, cartReducer, countItems, initialState, priceFor, sanitizeLin
 import { getItem } from '../data/menu'
 import { buildOrderMessage, whatsappUrl } from './whatsapp'
 import { SITE } from '../config/site'
+import { openStatus } from './hours'
 
 const goat = getItem('goat-ribs')
 const sukuma = getItem('sukuma')
@@ -76,5 +77,17 @@ describe('menu images', () => {
     const fs = await import('node:fs')
     const missing = MENU.filter((m) => m.image && !fs.existsSync(`public/images/dishes/${m.image}`))
     expect(missing).toEqual([])
+  })
+})
+
+describe('open status (sample hours, Nairobi time)', () => {
+  it('is open at 12:00 on a Sunday and says when it closes', () => {
+    expect(openStatus(new Date('2026-10-25T09:00:00Z'))).toEqual({ open: true, label: 'Open now, until 21:00' })
+  })
+  it('is closed before opening and says when it opens', () => {
+    expect(openStatus(new Date('2026-10-26T05:00:00Z'))).toEqual({ open: false, label: 'Closed, opens 11:00' })
+  })
+  it('is closed after closing and points to tomorrow', () => {
+    expect(openStatus(new Date('2026-10-26T19:00:00Z')).label).toBe('Closed, opens tomorrow 11:00')
   })
 })

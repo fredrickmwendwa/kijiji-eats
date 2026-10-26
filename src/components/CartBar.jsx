@@ -1,6 +1,6 @@
 import { useOrder } from '../context/OrderContext'
-import { formatKES } from '../lib/format'
 import Button from './Button'
+import AnimatedNumber from './AnimatedNumber'
 
 export default function CartBar() {
   const { count, total, openSheet } = useOrder()
@@ -9,7 +9,7 @@ export default function CartBar() {
     <div className="cart-bar on-ink" role="region" aria-label="Order summary">
       <div>
         <div className="mono" style={{ fontSize: '0.875rem' }}>{count} {count === 1 ? 'item' : 'items'}</div>
-        <div className="mono cart-bar__total">{formatKES(total)}</div>
+        <div className="mono cart-bar__total"><AnimatedNumber value={total} /></div>
       </div>
       <Button variant="primary" onClick={() => openSheet('review')}>View order</Button>
     </div>

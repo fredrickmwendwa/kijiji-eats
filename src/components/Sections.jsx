@@ -1,6 +1,7 @@
 import { HOURS, SITE } from '../config/site'
 import { FAQ, REVIEWS } from '../data/content'
 import Button from './Button'
+import Reveal from './Reveal'
 
 export function Hours() {
   const today = new Date().getDay()
@@ -38,11 +39,11 @@ export function Reviews({ limit = 3, showRealSlot = false }) {
     <>
       <p className="label">Sample content, not real customers</p>
       <div className="review-grid" style={{ marginTop: 16 }}>
-        {REVIEWS.slice(0, limit).map((text) => (
-          <figure key={text} className="review" style={{ margin: 0 }}>
-            <blockquote style={{ margin: 0 }}><p>&quot;{text}&quot;</p></blockquote>
+        {REVIEWS.slice(0, limit).map((text, i) => (
+          <Reveal as="figure" key={text} delay={i * 100} className={`review${i === 0 ? ' review--lead' : ''}`}>
+            <blockquote><p>&quot;{text}&quot;</p></blockquote>
             <figcaption className="label">Sample reviewer, sample date</figcaption>
-          </figure>
+          </Reveal>
         ))}
       </div>
       {showRealSlot && (

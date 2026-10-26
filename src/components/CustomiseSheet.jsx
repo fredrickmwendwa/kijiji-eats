@@ -31,9 +31,9 @@ export default function CustomiseSheet() {
   return (
     <Dialog label={`Customise ${item.name}`} onClose={closeCustomise}>
       <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', minHeight: 0, flex: 1 }}>
-        <div className="sheet__head">
+        <div className="sheet__head on-ink">
           <h2>{item.name}</h2>
-          <Button size="sm" onClick={closeCustomise} aria-label="Close" style={{ width: 44, padding: 0, color: 'inherit', borderColor: 'currentColor' }}>x</Button>
+          <Button size="sm" onClick={closeCustomise} aria-label="Close" style={{ width: 44, padding: 0 }}>x</Button>
         </div>
         <div className="sheet__body">
           {item.options.map((g) => (

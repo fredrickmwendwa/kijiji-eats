@@ -52,7 +52,7 @@ describe('menu', () => {
     await user.click(screen.getByRole('button', { name: 'Increase quantity of Sukuma wiki' }))
     const bar = screen.getByRole('region', { name: 'Order summary' })
     expect(within(bar).getByText('2 items')).toBeInTheDocument()
-    expect(within(bar).getByText('KES 400')).toBeInTheDocument()
+    expect(bar).toHaveTextContent('KES 400')
   })
 
   it('customises an item and prices the choice', async () => {

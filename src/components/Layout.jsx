@@ -20,6 +20,7 @@ export default function Layout() {
 
   return (
     <>
+      <div key={pathname} className="route-bar" aria-hidden="true" />
       <a className="skip-link" href="#main">Skip to content</a>
       <Header />
       <RestoreBanner />

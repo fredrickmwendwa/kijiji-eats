@@ -20,6 +20,11 @@ This is a concept. The restaurant, menu, prices, hours, address and reviews are 
 - M-Pesa guidance for Till, Paybill or both, with copyable details, a clear "instructions only"
   notice and a prefilled "I have paid" WhatsApp message.
 - Visit page: story, hours (today marked), map panel with fallback links, FAQ, reviews.
+- Motion with purpose: the hero headline rises line by line while the tally mark draws itself, section rules draw in
+  on scroll, images wipe in, menu rows stagger, buttons fill on hover, totals count up, and a bar sweeps across the top
+  on page changes. All of it is disabled under `prefers-reduced-motion`.
+- A scrolling ticker of real menu prices and a live "Open now" pill that reads the sample hours in Nairobi time.
+- Ledger-style menu rows with dotted leaders from dish to price.
 - Accessible dialogs (focus trap, Escape, focus return), skip link, visible focus, live regions,
   reduced-motion support, per-page titles and meta descriptions.
 
@@ -91,13 +96,20 @@ src/
 
 ## Testing
 
-`npm test` runs 19 tests: cart pricing, merging and replacement; the WhatsApp message and encoded
+`npm test` runs 22 tests: cart pricing, merging and replacement; the WhatsApp message and encoded
 URL; every route; menu filtering and search; customisation pricing; the order flow from empty cart through
 name validation, WhatsApp handoff and payment guidance; saved order restore; and mobile navigation.
 
-What has not been done: no real browser was available when this was built, so layout at real widths,
-scrolling, sticky behaviour, touch targets and visual accuracy have not been checked here, and there are no
-screenshots yet. Before shipping, check the pages at 320, 360, 390, 768, 1280 and 1440 pixels and on real phones.
+Browser checks: the built site was also run in headless Chromium at 320, 390, 768, 1280 and 1440 pixels on every
+page. There were no console errors, no failed requests, no broken images, no horizontal overflow and no tap
+targets under 40 pixels. The full phone and desktop ordering flow was clicked through (customise, add, validate
+name, WhatsApp link contents, payment step, Escape to close, mobile navigation). That run found and fixed real bugs
+(a reveal that left the story image invisible, dish rows overflowing at 320 pixels, Escape not closing the sheet
+after a step change). The test run loaded the same three fonts from local files because the sandbox could not reach
+Google Fonts.
+
+What has not been done: testing on real phones and other browsers (Safari, Firefox), automated visual
+regression tests, and screenshots in this README. Check the site on a real device before shipping.
 
 ## Deployment note
 
